@@ -11,7 +11,9 @@ namespace _4
 	{
 		public Temprature GetMin (Temprature[] tempratures)
 		{
-			return null;
+			if (tempratures.Length == 0)
+				return null;
+			return tempratures[0];
 		}
 	}
 }

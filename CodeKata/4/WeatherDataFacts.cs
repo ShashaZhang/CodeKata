@@ -46,6 +46,15 @@ namespace _4
 			var minTemprature = new DataComparer ().GetMin(tempratures);
 			Assert.Equal (null,minTemprature);
 		}
+
+		[Fact]
+		public void should_return_the_only_element_when_there_is_only_one_and_only_valid_element(){
+			var tempratures = new[] { new Temprature ("1 23 8") };
+			var minTemprature = new DataComparer ().GetMin (tempratures);
+			Assert.Equal (tempratures [0].Day, minTemprature.Day);
+			Assert.Equal (tempratures [0].Max, minTemprature.Max);
+			Assert.Equal (tempratures [0].Min, minTemprature.Min);
+		}
 	}
 
     public class DataReader
