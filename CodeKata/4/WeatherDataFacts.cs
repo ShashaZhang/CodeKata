@@ -39,7 +39,14 @@ namespace _4
             var tempratures = new DataReader().Read(new MemoryStream(Encoding.UTF8.GetBytes("1 23 8\n2 34 1")));
             Assert.Equal(2, tempratures.Count);
         }
-    }
+
+		[Fact]
+		public void should_return_null_when_there_is_no_element(){
+			var tempratures = new Temprature[] { };
+			var minTemprature = new DataComparer ().GetMin(tempratures);
+			Assert.Equal (null,minTemprature);
+		}
+	}
 
     public class DataReader
     {
