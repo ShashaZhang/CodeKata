@@ -55,6 +55,15 @@ namespace _4
 			Assert.Equal (tempratures [0].Max, minTemprature.Max);
 			Assert.Equal (tempratures [0].Min, minTemprature.Min);
 		}
+
+		[Fact]
+		public void should_return_the_min_temprature_spread_when_there_is_more_than_one_valid_element(){
+			var tempratures = new[] { new Temprature ("1 23 8"), new Temprature ("2 9 3") };
+			var minTemprature = new DataComparer ().GetMin (tempratures);
+			Assert.Equal (tempratures [1].Day, minTemprature.Day);
+			Assert.Equal (tempratures [1].Max, minTemprature.Max);
+			Assert.Equal (tempratures [1].Min, minTemprature.Min);
+		}
 	}
 
     public class DataReader
@@ -97,5 +106,10 @@ namespace _4
             if (Regex.Match(line,@"\d+ \d+(.\d+)? \d+(.\d+)?").Success) temprature = new Temprature(line);
             return temprature;
         }
+
+		public double GetSpread ()
+		{
+			return Max - Min;
+		}
     }
 }

@@ -13,7 +13,13 @@ namespace _4
 		{
 			if (tempratures.Length == 0)
 				return null;
-			return tempratures[0];
+			var min = tempratures [0];
+			foreach(var temprature in tempratures){
+				if (min.GetSpread () > temprature.GetSpread ()) {
+					min = temprature;
+				}
+			}			
+			return min;
 		}
 	}
 }
