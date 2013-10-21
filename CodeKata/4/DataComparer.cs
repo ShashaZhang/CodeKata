@@ -9,9 +9,9 @@ namespace _4
 {
 	public class DataComparer
 	{
-		public Temprature GetMin (Temprature[] tempratures)
+		public Temprature GetMin (IList<Temprature> tempratures)
 		{
-			if (tempratures.Length == 0)
+			if (tempratures.Count == 0)
 				return null;
 			var min = tempratures [0];
 			foreach(var temprature in tempratures){

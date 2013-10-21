@@ -64,6 +64,24 @@ namespace _4
 			Assert.Equal (tempratures [1].Max, minTemprature.Max);
 			Assert.Equal (tempratures [1].Min, minTemprature.Min);
 		}
+
+		[Fact]
+		public void should_return_min_temprature_when_read_from_stream(){
+			var tempratures = new DataReader().Read(new MemoryStream(Encoding.UTF8.GetBytes("1 23 8\n2 34 1\na b c")));
+			var minTemprature = new DataComparer ().GetMin (tempratures);
+			Assert.Equal (tempratures [0].Day, minTemprature.Day);
+			Assert.Equal (tempratures [0].Max, minTemprature.Max);
+			Assert.Equal (tempratures [0].Min, minTemprature.Min);
+		}
+		
+		[Fact]
+		public void should_return_min_temprature_spread_from_file(){
+			var tempratures = new DataReader().Read(new FileStream("weather.dat", FileMode.Open));
+			var minTemprature = new DataComparer ().GetMin (tempratures);
+			Assert.Equal (tempratures [0].Day, minTemprature.Day);
+			Assert.Equal (tempratures [0].Max, minTemprature.Max);
+			Assert.Equal (tempratures [0].Min, minTemprature.Min);
+		}
 	}
 
     public class DataReader
@@ -77,6 +95,7 @@ namespace _4
             {
                 if (line != null)
                 {
+					Console.WriteLine("12312312123");
                     Temprature temprature = Temprature.Create(line);
                     if (temprature != null) tempratures.Add(temprature);
                 }
