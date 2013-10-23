@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 using Xunit;
 
 namespace _4
@@ -31,6 +29,18 @@ namespace _4
         {
             var tempratures = new DataReader().Read(new MemoryStream(Encoding.UTF8.GetBytes("a bc d")));
             Assert.Equal(0, tempratures.Count);
+        }
+
+        [Fact]
+        public void should_parse_to_right_temprature()
+        {
+            var tempratures = new DataReader().Read(
+                new MemoryStream(
+                    Encoding.UTF8.GetBytes(
+                        "9  86    32*   59       6  61.5       0.00         240  7.6 220  12  6.0  78 46 1018.6")));
+            Assert.Equal(9, tempratures[0].Day);
+            Assert.Equal(86, tempratures[0].Max);
+            Assert.Equal(32, tempratures[0].Min);
         }
 
         [Fact]
@@ -78,57 +88,9 @@ namespace _4
 		public void should_return_min_temprature_spread_from_file(){
 			var tempratures = new DataReader().Read(new FileStream("weather.dat", FileMode.Open));
 			var minTemprature = new DataComparer ().GetMin (tempratures);
-			Assert.Equal (tempratures [0].Day, minTemprature.Day);
-			Assert.Equal (tempratures [0].Max, minTemprature.Max);
-			Assert.Equal (tempratures [0].Min, minTemprature.Min);
+			Assert.Equal (tempratures [13].Day, minTemprature.Day);
+			Assert.Equal (tempratures [13].Max, minTemprature.Max);
+			Assert.Equal (tempratures [13].Min, minTemprature.Min);
 		}
 	}
-
-    public class DataReader
-    {
-        public IList<Temprature> Read(Stream stream)
-        {
-            var reader = new StreamReader(stream);
-            var line = reader.ReadLine();
-            var tempratures = new List<Temprature>();
-            while (line != null)
-            {
-                if (line != null)
-                {
-					Console.WriteLine("12312312123");
-                    Temprature temprature = Temprature.Create(line);
-                    if (temprature != null) tempratures.Add(temprature);
-                }
-                line = reader.ReadLine();
-            }
-            return tempratures;
-        }
-    }
-
-    public class Temprature
-    {
-        public int Day;
-        public double Max;
-        public double Min;
-
-        public Temprature(string line)
-        {
-            var arr = line.Split(' ');
-            Day = Int32.Parse(arr[0]);
-            Max = Double.Parse(arr[1]);
-            Min = Double.Parse(arr[2]);
-        }
-
-        public static Temprature Create(string line)
-        {
-            Temprature temprature = null;
-            if (Regex.Match(line,@"\d+ \d+(.\d+)? \d+(.\d+)?").Success) temprature = new Temprature(line);
-            return temprature;
-        }
-
-		public double GetSpread ()
-		{
-			return Max - Min;
-		}
-    }
 }
