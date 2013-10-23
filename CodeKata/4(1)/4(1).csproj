@@ -43,6 +43,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataReader.cs" />
+    <Compile Include="FootballMatch.cs" />
     <Compile Include="FootballMatchFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
