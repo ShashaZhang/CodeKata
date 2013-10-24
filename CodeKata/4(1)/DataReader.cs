@@ -15,12 +15,16 @@ namespace _4_1_
         public IList<FootballMatch> Read()
         {
             var matches = new List<FootballMatch>();
-            var line = new StreamReader(stream).ReadLine();
-            if (line != null)
+            var reader = new StreamReader(stream);
+
+            var line = reader.ReadLine();
+            while (line != null)
             {
                 var match = FootballMatch.Create(line);
                 matches.Add(match);
+                line = reader.ReadLine();
             }
+
             return matches;
         }
     }
