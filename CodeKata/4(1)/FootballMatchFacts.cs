@@ -78,6 +78,13 @@ namespace _4_1_
             Assert.Equal(45, matches[2].Lose);
         }
 
+        [Fact]
+        public void should_return_null_when_there_is_no_element_to_compare()
+        {
+            FootballMatch match = new DataComparor().Compare(new List<FootballMatch>());
+            Assert.Equal(null, match);
+        }
+
         private static IList<FootballMatch> SetupMatches(string dataStr)
         {
             return new DataReader(

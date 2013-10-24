@@ -43,6 +43,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataComparor.cs" />
     <Compile Include="DataReader.cs" />
     <Compile Include="FootballMatch.cs" />
     <Compile Include="FootballMatchFacts.cs" />
