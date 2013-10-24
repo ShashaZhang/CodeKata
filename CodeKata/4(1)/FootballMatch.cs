@@ -17,8 +17,15 @@ namespace _4_1_
         public static FootballMatch Create(string line)
         {
             var datas = line.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-            var match = new FootballMatch(datas[1], Int32.Parse(datas[6]), Int32.Parse(datas[8]));
-            return match;
+            try
+            {
+                var match = new FootballMatch(datas[1], Int32.Parse(datas[6]), Int32.Parse(datas[8]));
+                return match;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

@@ -21,7 +21,8 @@ namespace _4_1_
             while (line != null)
             {
                 var match = FootballMatch.Create(line);
-                matches.Add(match);
+                if(match != null)
+                    matches.Add(match);
                 line = reader.ReadLine();
             }
 
