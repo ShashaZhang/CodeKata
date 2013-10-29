@@ -27,5 +27,10 @@ namespace _4_1_
                 return null;
             }
         }
+
+        public int GetSpread()
+        {
+            return Win - Lose;
+        }
     }
 }

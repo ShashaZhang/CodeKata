@@ -12,7 +12,7 @@ namespace _4_1_
             var minSpread = footballMatches[0];
             foreach (var match in footballMatches)
             {
-                if ((minSpread.Win - minSpread.Lose) > (match.Win - match.Lose))
+                if ((minSpread.GetSpread()) > (match.GetSpread()))
                     minSpread = match;
             }
             return minSpread;
