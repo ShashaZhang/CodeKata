@@ -126,6 +126,17 @@ namespace _4_1_
             Assert.Equal(0, comparedMatches.Lose);
         }
 
+        [Fact]
+        public void should_return_smallest_score_spread_when_read_data_from_file()
+        {
+            var matches = new DataReader(new FileStream("football.dat", FileMode.Open)).Read();
+            var match = new DataComparor().Compare(matches);
+
+            Assert.Equal("Leicester", match.Name);
+            Assert.Equal(30, match.Win);
+            Assert.Equal(64, match.Lose);
+        }
+
         private static IList<FootballMatch> SetupMatches(string dataStr)
         {
             return new DataReader(
