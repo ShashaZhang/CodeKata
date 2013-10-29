@@ -6,6 +6,8 @@ namespace _4_1_
     {
         public FootballMatch Compare(IList<FootballMatch> footballMatches)
         {
+            if (footballMatches.Count != 0)
+                return footballMatches[0];
             return null;
         }
     }

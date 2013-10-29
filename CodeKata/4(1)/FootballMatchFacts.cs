@@ -85,6 +85,18 @@ namespace _4_1_
             Assert.Equal(null, match);
         }
 
+        [Fact]
+        public void should_return_the_only_match_when_there_is_only_one_element_to_compare()
+        {
+            var matches = new List<FootballMatch>();
+            matches.Add(new FootballMatch("Arsenal", 3,6));
+            var comparedMatches = new DataComparor().Compare(matches);
+
+            Assert.Equal("Arsenal", comparedMatches.Name);
+            Assert.Equal(3, comparedMatches.Win);
+            Assert.Equal(6, comparedMatches.Lose);
+        }
+
         private static IList<FootballMatch> SetupMatches(string dataStr)
         {
             return new DataReader(
