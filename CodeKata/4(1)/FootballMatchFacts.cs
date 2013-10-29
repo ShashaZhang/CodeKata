@@ -97,6 +97,20 @@ namespace _4_1_
             Assert.Equal(6, comparedMatches.Lose);
         }
 
+        [Fact]
+        public void should_return_the_smaller_score_spread_one_when_there_are_two_elements()
+        {
+            var matches = new List<FootballMatch>();
+            matches.Add(new FootballMatch("Arsenal", 6, 1));
+            matches.Add(new FootballMatch("Manchester_U",2,1));
+
+            var comparedMatches = new DataComparor().Compare(matches);
+
+            Assert.Equal("Manchester_U", comparedMatches.Name);
+            Assert.Equal(2, comparedMatches.Win);
+            Assert.Equal(1, comparedMatches.Lose);
+        }
+
         private static IList<FootballMatch> SetupMatches(string dataStr)
         {
             return new DataReader(
